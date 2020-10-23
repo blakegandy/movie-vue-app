@@ -9,7 +9,7 @@
       <router-link to="/movies">All Movies</router-link> |
       <router-link to="/movies/new">Create Movie</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -35,3 +35,12 @@
   color: #42b983;
 }
 </style>
+<script>
+export default {
+  methods: {
+    isLoggedIn: function() {
+      return localStorage.getItem("jwt");
+    },
+  },
+};
+</script>

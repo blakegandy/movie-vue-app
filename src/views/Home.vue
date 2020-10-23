@@ -10,7 +10,7 @@
 
     <div v-for="movie in movies">
       <h2>Title: {{ movie.title }}</h2>
-      <p>Year: {{movie.year}}
+      <p>Year: {{ movie.year }}</p>
       <p>Plot: {{ movie.plot }}</p>
       <p>Director: {{ movie.director }}</p>
       <button v-on:click="showMovie(movie)">More Info</button>
@@ -37,16 +37,14 @@
       </form>
     </dialog>
   </div>
-
 </template>
 
-<style>
-</style>
+<style></style>
 
 <script>
 import axios from "axios";
 export default {
-  data: function () {
+  data: function() {
     return {
       movies: [],
       newMovieTitle: "",
@@ -56,17 +54,17 @@ export default {
       currentMovie: {},
     };
   },
-  created: function () {
+  created: function() {
     this.indexMovies();
   },
   methods: {
-    indexMovies: function () {
+    indexMovies: function() {
       axios.get("api/movies").then((response) => {
         console.log(response.data);
         this.movies = response.data;
       });
     },
-    createMovie: function () {
+    createMovie: function() {
       var params = {
         title: this.newMovieTitle,
         year: this.newMovieYear,
@@ -83,12 +81,12 @@ export default {
           console.log(error.response.data.errors);
         });
     },
-    showMovie: function (movie) {
+    showMovie: function(movie) {
       console.log(movie.title);
       this.currentMovie = movie;
       document.querySelector("#movie-details").showModal();
     },
-    updateMovie: function (movie) {
+    updateMovie: function(movie) {
       var params = {
         title: movie.title,
         year: movie.year,
@@ -105,7 +103,7 @@ export default {
           console.log(error.response.data.errors);
         });
     },
-    destroyProduct: function (product) {
+    destroyProduct: function(product) {
       axios.delete(`/api/movies/${product.id}`).then((response) => {
         console.log("Success", response.data);
         var index = this.movies.indexOf(product);

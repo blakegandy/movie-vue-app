@@ -4,20 +4,21 @@
       Title: <input type="text" v-model="newMovieTitle" /><br />
       Year: <input type="text" v-model="newMovieYear" /><br />
       Plot: <input type="text" v-model="newMoviePlot" /><br />
+      <small class="text-danger" v-if="plot.length > 200"
+        >The plot can only be 200 characters long.</small
+      >
       Director: <input type="text" v-model="newMovieDirector" /><br />
       <button v-on:click="createMovie()">Create Movie</button>
     </div>
   </div>
-
 </template>
 
-<style>
-</style>
+<style></style>
 
 <script>
 import axios from "axios";
 export default {
-  data: function () {
+  data: function() {
     return {
       newMovieTitle: "",
       newMovieYear: "",
@@ -25,9 +26,9 @@ export default {
       newMovieDirector: "",
     };
   },
-  created: function () {},
+  created: function() {},
   methods: {
-    createMovie: function () {
+    createMovie: function() {
       var params = {
         title: this.newMovieTitle,
         year: this.newMovieYear,
